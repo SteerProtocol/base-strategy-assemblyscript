@@ -1,31 +1,27 @@
-export interface IStrategy {
-  execute(
-    arg?: string,
-    arg0?: string,
-    arg1?: string,
-    arg2?: string,
-    arg3?: string,
-    arg4?: string,
-    arg5?: string
-  ): string;
-}
 
-export class BaseStrategy implements IStrategy {
-  constructor() {}
+// Base abstract class for designing strategies on Steer
+// To read about strategy's interface see https://docs.steer.finance/Strategies/interface-api 
+export abstract class BaseStrategy {
 
-  static config(): string {
-    throw new Error("Method not implemented.");
-  }
+  static version: i32 = 2;
 
-  public execute(
-    _arg: string = '',
-    _arg0: string = '',
-    _arg1: string = '',
-    _arg2: string = '',
-    _arg3: string = '',
-    _arg4: string = '',
-    _arg5: string = ''
-  ): string {
-    throw new Error("Method not implemented.");
+  // Sets any strategy-specific parameters 
+  constructor(config: string){};
+
+  // The stringified output from the data connectors (if any) are passed in.
+  execute(dataConnectorsOutput: string): string { 
+      // Refer to https://docs.steer.finance/Strategies/interface-api#interface
+      return 'This output will need to be a stringified transactionRequest object';
+  };
+
+  // Returns the configuration 
+  config(): string {
+      // Refer to this example https://docs.steer.finance/Strategies/interface-api#example-assemblyscript 
+      return 'This should be a react-json-schema for creating the manifest';
+  };
+
+  // Check the releases and docs for the latest features, interfaces, and support
+  getVersion(): i32{
+      return BaseStrategy.version;
   }
 }
