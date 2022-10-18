@@ -15,7 +15,7 @@ export abstract class BaseStrategy {
   };
 
   // Returns the configuration 
-  config(): string {
+  static config(): string {
       // Refer to this example https://docs.steer.finance/Strategies/interface-api#example-assemblyscript 
       return 'This should be a react-json-schema for creating the manifest';
   };
